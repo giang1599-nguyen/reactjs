@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- // Phan I.
+    - Xur ly DOM events
+    - Component do chung ta dinh nghia phài viet in hoa ki tu dàu
+       Chon component trong object
+    - Booleans, Null & Undefined không duoc render
+    - Ket hop toán tu logic de render theo dièu kiên -->
+
+    <script type="text/babel">
+      //example 1
+      const Form = {
+        //method cũng là function component
+        Input() {
+          return <input />;
+        },
+        Checkbox() {
+          return <input type="checkbox" />;
+        },
+      };
+
+      function App() {
+        const type = "Checkbox";
+
+        const Component = Form[type];
+
+        return (
+          <div id="wrapper">
+            <Component />
+          </div>
+        );
+      }
+
+      //example 2
+
+      function Button({ title, href, onClick }) {
+        let Component = "button";
+        const props = {};
+
+        if (onClick) {
+          props.onClick = onClick;
+        }
+
+        if (href) {
+          Component = "a";
+          props.href = href;
+        }
+
+        // xử lý nhấn button
+
+        //ES6: ...props <=> onClick = {onClick}
+        return <Component {...props}>{title}</Component>;
+      }
+
+      function App() {
+        return (
+          // nhấn vào button vừa href vừa log
+          <div id="wrapper">
+            <Button
+              title="Click vv"
+              href="https://fullstack.edu.vn/"
+              onClick={() => console.log("ffff")}
+            />
+          </div>
+        );
+      }
+
+      // example 3
+      function App({title}) {
+
+       let firstAccess = true
+
+        return (
+          // toán tử logic 
+          <div id="wrapper">
+             {firstAccess && <h3> 'Hello true' </h3> }
+             <h1>{title || 'Default title'}</h1>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App title = "App title" />);
+    </script>
+  </body>
+</html>

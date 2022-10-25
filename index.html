@@ -17,36 +17,20 @@
     <div id="root"></div>
 
     <script type="text/babel">
-      function PostItem({ 
-         images,
-         title , 
-        //  data,
-         callBack = ()=> {},
-        }) {
-        return (
-          <div className="post-item">
-            <label htmlFor="email"> {images}</label>
-            <label htmlFor="email"> {title}</label>
-            <input id="email" type="text" />
-          </div>
-        );
-      }
-
+     
+      // example 4
+    
       function App() {
+
         return (
           <div id="wrapper">
-            <PostItem
-              images="image"
-              title="My email"
-              data={[{ a: 1 }, { b: 2 }]}
-              callBack={() => {}}
-            />
+            
           </div>
         );
       }
 
       const root = ReactDOM.createRoot(document.querySelector("#root"));
-      root.render(<App />);
+      root.render(<App title="App title" />);
     </script>
   </body>
 </html>

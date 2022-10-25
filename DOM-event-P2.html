@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!-- // Phan II.
+    - Props trong JSX
+        - <YourComponent
+            propName1="String literals"
+            propName2={expression}
+           />
+     - Props default to "true"
+     - Spread/Rest props
+     - Children prop
+         - <YourComponent>String literals</YourComponent>
+         - <YourComponent>{expression}</YourComponent>
+     - Render props  -->
+
+    <script type="text/babel">
+      //example 1
+      function Button({ title, primary }) {
+        console.log(primary);
+        return <button>{title}</button>;
+      }
+
+      function App() {
+        const title = "Button me";
+
+        return (
+          <div id="wrapper">
+            <Button primary title={title} />
+          </div>
+        );
+      }
+
+      //example 2
+      function Input({ label, ...inputProps }) {
+        // <input type={type} placeholder={placeholder} />  <=> <input {...inputProps} />
+        return (
+          <div>
+            <input {...inputProps} />
+          </div>
+        );
+      }
+
+      function App() {
+        const title = "Button me";
+
+        return (
+          <div id="wrapper">
+            <Input label="label" placeholder="Place Holder" />
+          </div>
+        );
+      }
+
+      // example 3
+      function Button({ children, ...buttonProp }) {
+        return <button>{children}</button>;
+      }
+
+      function App() {
+        const title = "Button me";
+
+        return (
+          <div id="wrapper">
+            <Button title={title}> Test </Button>
+          </div>
+        );
+      }
+
+      // example 4
+      function List({ datas, children }) {
+        return <ul>{datas.map(children)}</ul>;
+      }
+
+      function App() {
+        const datas = ["A", "B", "C"];
+
+        return (
+          <div id="wrapper">
+            <List datas={datas}>
+              {(item, index) => <li key={index}>{item}</li>}
+            </List>
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App title="App title" />);
+    </script>
+  </body>
+</html>

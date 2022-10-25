@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Add React in One Minute</title>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const courses = [
+        {
+          id: 5,
+          description: "Tutorials",
+          students_count: 7798,
+        },
+        {
+          id: 6,
+          description: "Tutorials 1",
+          students_count: 1212,
+        },
+      ];
+
+      // function CourseItem({
+
+      // })
+
+      //const CourseItem = (props) => (
+      //sử dụng destructuring
+      const CourseItem = ({ course }) => (
+        <div>
+          <h1>{course.id}</h1>
+          <button onClick = {(event) => alert('course.description')}>{course.description}</button>
+          <p>{course.students_count}</p>
+        </div>
+      );
+
+      function PostItem({
+        images,
+        title,
+        //  data,
+        callBack = () => {},
+      }) {
+        return (
+          <div className="post-item">
+            <label htmlFor="email"> {images}</label>
+            <label htmlFor="email"> {title}</label>
+            <input id="email" type="text" />
+          </div>
+        );
+      }
+      // <PostItem
+      //   images="image"
+      //   title="My email"
+      //   data={[{ a: 1 }, { b: 2 }]}
+      //   callBack={() => {}}
+      // />
+
+      function App() {
+        return (
+          <div id="wrapper">
+            {courses.map((course) => (
+              <CourseItem
+                key={course.id}
+                // id={course.id} // id
+                // description={course.description}
+                // studentsCount={course.students_count}
+
+                // sử dụng destructuring
+                course={course}
+              />
+            ))}
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
